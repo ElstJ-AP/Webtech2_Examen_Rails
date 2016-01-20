@@ -9,6 +9,12 @@ class TodoController < ApplicationController
 		@beschrijving = params[:beschrijving]
 		@status = params[:status]
 
+		@Todo = Todo.create(ingavedatum: @ingavedatum, einddatum: @einddatum, prioriteit: @prioriteit, beschrijving: @beschrijving, status: @status)
+		@Todo.save
+
+		@db = CouchRest.database(ENV['DB'])
+		@response = @db.save_doc( { 'ingavedatum' => @ingavedatum, 'einddatum' => @einddatum, 'prioriteit' => @prioriteit, 'beschrijving' => @beschrijving, 'status' => @status })
+
 		@json = { :ingavedatum => @ingavedatum, :einddatum => @einddatum, :prioriteit => @prioriteit, :beschrijving => @beschrijving, :status => @status }.to_json
 
 
