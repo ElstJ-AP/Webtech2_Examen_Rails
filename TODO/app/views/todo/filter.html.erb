@@ -1,0 +1,4 @@
+
+<% @todos.each do |todo| %>
+		<div><%= { :ingavedatum => todo['ingavedatum'], :einddatum => todo['einddatum'], :prioriteit => todo['prioriteit'], :beschrijving => todo['beschrijving'], :status => todo['status'] }.to_json %></div>
+<% end %>
